@@ -1,0 +1,60 @@
+create database Libreria;
+go
+
+use Libreria;
+
+create table Editoriales
+(
+	Id int primary key identity (1,1),
+	Nombre varchar(50) not null,
+	constraint UQ_Editorial unique (Nombre),
+	
+);
+go
+
+create table Generos
+(
+	Id int primary key identity(1,1),
+	Nombre varchar(50)
+	constraint UQ_Genero unique (Nombre),
+
+);
+go
+
+create table Autores
+(
+	Id int primary key identity (1,1),
+	Nombre varchar (50) not null,
+	Apellido varchar (50) not null,
+	Pais varchar (50) not null,
+	anioNacimiento datetime not null,
+	constraint UQ_Nombre_Apellido unique (Nombre, Apellido)
+);
+go
+
+create table Libros
+(
+	Id int primary key identity(1,1),
+	Registro int not null,
+	Titulo varchar (100) not null,
+	RestoTitulo varchar (300)not null,
+	Volumen int not null,
+	ISBN int not null,
+	AnioPublicacion int not null,
+	LugarPublicacion varchar(70) not null,
+	Idioma varchar (30) not null,
+	FechaAlta datetime not null,
+	idEditorial int not null,
+	idAutor int not null,
+	idGenero int not null,
+	idGenero2 int,
+	idGenero3 int,
+	Stock int not null default (1),
+	constraint UQ_Libro_unico unique (Titulo, RestoTitulo, Volumen),
+	constraint FK_Libro_Editorial foreign key (idEditorial) references Editoriales(Id),
+	constraint FK_Libro_Autor foreign key (idAutor) references Autores(Id),
+	constraint FK_Libro_Genero foreign key (idGenero) references Generos(Id),
+	constraint FK_Libro_Genero2 foreign key (idGenero2) references Generos(Id),
+	constraint FK_Libro_Genero3 foreign key (idGenero3) references Generos(Id),
+);
+go
