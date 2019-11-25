@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AccademyLibraryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Author">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AuthorName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Nationality" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="BookAuth" Relationship="Self.FK_BookAu" FromRole="Author" ToRole="BookAuth" />
+  </EntityType>
+  <EntityType Name="Book">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Subtitle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ISBN" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="BookAuth" Relationship="Self.FK_Author" FromRole="Book" ToRole="BookAuth" />
+    <NavigationProperty Name="BookGen" Relationship="Self.FK_BookGen" FromRole="Book" ToRole="BookGen" />
+    <NavigationProperty Name="ISBN1" Relationship="Self.FK_ISBN" FromRole="Book" ToRole="ISBN" />
+  </EntityType>
+  <EntityType Name="BookAuth">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BookId" Type="Int32" Nullable="false" />
+    <Property Name="AuthorId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Author" Relationship="Self.FK_BookAu" FromRole="BookAuth" ToRole="Author" />
+    <NavigationProperty Name="Book" Relationship="Self.FK_Author" FromRole="BookAuth" ToRole="Book" />
+  </EntityType>
+  <EntityType Name="BookGen">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BookId" Type="Int32" Nullable="false" />
+    <Property Name="GenId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Book" Relationship="Self.FK_BookGen" FromRole="BookGen" ToRole="Book" />
+    <NavigationProperty Name="Genre" Relationship="Self.FK_Genre" FromRole="BookGen" ToRole="Genre" />
+  </EntityType>
+  <EntityType Name="Editorial">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EditorialName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="ISBN" Relationship="Self.FK_Editorial" FromRole="Editorial" ToRole="ISBN" />
+  </EntityType>
+  <EntityType Name="Genre">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GenreName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="BookGen" Relationship="Self.FK_Genre" FromRole="Genre" ToRole="BookGen" />
+  </EntityType>
+  <EntityType Name="ISBN">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ISBN1" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EditId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Book" Relationship="Self.FK_ISBN" FromRole="ISBN" ToRole="Book" />
+    <NavigationProperty Name="Editorial" Relationship="Self.FK_Editorial" FromRole="ISBN" ToRole="Editorial" />
+  </EntityType>
+  <Association Name="FK_BookAu">
+    <End Role="Author" Type="Self.Author" Multiplicity="1" />
+    <End Role="BookAuth" Type="Self.BookAuth" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Author">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BookAuth">
+        <PropertyRef Name="AuthorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Author">
+    <End Role="Book" Type="Self.Book" Multiplicity="1" />
+    <End Role="BookAuth" Type="Self.BookAuth" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Book">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BookAuth">
+        <PropertyRef Name="BookId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BookGen">
+    <End Role="Book" Type="Self.Book" Multiplicity="1" />
+    <End Role="BookGen" Type="Self.BookGen" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Book">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BookGen">
+        <PropertyRef Name="BookId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ISBN">
+    <End Role="ISBN" Type="Self.ISBN" Multiplicity="1" />
+    <End Role="Book" Type="Self.Book" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ISBN">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Book">
+        <PropertyRef Name="ISBN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Genre">
+    <End Role="Genre" Type="Self.Genre" Multiplicity="1" />
+    <End Role="BookGen" Type="Self.BookGen" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Genre">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BookGen">
+        <PropertyRef Name="GenId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Editorial">
+    <End Role="Editorial" Type="Self.Editorial" Multiplicity="1" />
+    <End Role="ISBN" Type="Self.ISBN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Editorial">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ISBN">
+        <PropertyRef Name="EditId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AccademyLibraryEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Author" EntityType="Self.Author" />
+    <EntitySet Name="Book" EntityType="Self.Book" />
+    <EntitySet Name="BookAuth" EntityType="Self.BookAuth" />
+    <EntitySet Name="BookGen" EntityType="Self.BookGen" />
+    <EntitySet Name="Editorial" EntityType="Self.Editorial" />
+    <EntitySet Name="Genre" EntityType="Self.Genre" />
+    <EntitySet Name="ISBN" EntityType="Self.ISBN" />
+    <AssociationSet Name="FK_BookAu" Association="Self.FK_BookAu">
+      <End Role="Author" EntitySet="Author" />
+      <End Role="BookAuth" EntitySet="BookAuth" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Author" Association="Self.FK_Author">
+      <End Role="Book" EntitySet="Book" />
+      <End Role="BookAuth" EntitySet="BookAuth" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BookGen" Association="Self.FK_BookGen">
+      <End Role="Book" EntitySet="Book" />
+      <End Role="BookGen" EntitySet="BookGen" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ISBN" Association="Self.FK_ISBN">
+      <End Role="ISBN" EntitySet="ISBN" />
+      <End Role="Book" EntitySet="Book" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Genre" Association="Self.FK_Genre">
+      <End Role="Genre" EntitySet="Genre" />
+      <End Role="BookGen" EntitySet="BookGen" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Editorial" Association="Self.FK_Editorial">
+      <End Role="Editorial" EntitySet="Editorial" />
+      <End Role="ISBN" EntitySet="ISBN" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

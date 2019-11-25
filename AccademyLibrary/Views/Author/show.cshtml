@@ -1,0 +1,28 @@
+﻿@using AccademyLibrary.Models
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>show</title>
+</head>
+<body>
+    <header>
+        <h1>Hola!</h1>
+    </header>
+    <main>
+        <ul>
+            @foreach(Author au in Model)
+            {
+                <li> @au.AuthorName - @au.Nationality</li>
+            }
+        </ul>
+    </main>
+    <div> 
+    </div>
+</body>
+</html>
