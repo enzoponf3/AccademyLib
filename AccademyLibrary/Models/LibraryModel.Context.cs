@@ -13,10 +13,10 @@ namespace AccademyLibrary.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class AccademyLibraryEntities : DbContext
+    public partial class LibraryEntities : DbContext
     {
-        public AccademyLibraryEntities()
-            : base("name=AccademyLibraryEntities")
+        public LibraryEntities()
+            : base("name=LibraryEntities")
         {
         }
     
@@ -27,10 +27,10 @@ namespace AccademyLibrary.Models
     
         public virtual DbSet<Author> Author { get; set; }
         public virtual DbSet<Book> Book { get; set; }
-        public virtual DbSet<BookAuth> BookAuth { get; set; }
-        public virtual DbSet<BookGen> BookGen { get; set; }
-        public virtual DbSet<Editorial> Editorial { get; set; }
+        public virtual DbSet<Book_Auth> Book_Auth { get; set; }
+        public virtual DbSet<Book_Gen> Book_Gen { get; set; }
+        public virtual DbSet<Book_Pub> Book_Pub { get; set; }
         public virtual DbSet<Genre> Genre { get; set; }
-        public virtual DbSet<ISBN> ISBN { get; set; }
+        public virtual DbSet<Publisher> Publisher { get; set; }
     }
 }

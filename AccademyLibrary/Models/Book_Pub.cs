@@ -12,18 +12,13 @@ namespace AccademyLibrary.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Editorial
+    public partial class Book_Pub
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Editorial()
-        {
-            this.ISBN = new HashSet<ISBN>();
-        }
-    
         public int Id { get; set; }
-        public string EditorialName { get; set; }
+        public int BookId { get; set; }
+        public int PubId { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ISBN> ISBN { get; set; }
+        public virtual Book Book { get; set; }
+        public virtual Publisher Publisher { get; set; }
     }
 }

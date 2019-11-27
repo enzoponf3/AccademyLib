@@ -6,9 +6,9 @@ using System.Web.Mvc;
 
 namespace AccademyLibrary.Controllers
 {
-    public class EditorialController : Controller
+    public class PublisherController : Controller
     {
-        // GET: Editorial
+        // GET: Publisher
         public ActionResult Index()
         {
             return View();

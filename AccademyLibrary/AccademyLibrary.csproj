@@ -130,47 +130,47 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AuthorController.cs" />
     <Compile Include="Controllers\BookController.cs" />
-    <Compile Include="Controllers\EditorialController.cs" />
     <Compile Include="Controllers\GenreController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PublisherController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Author.cs">
-      <DependentUpon>LibModelDB.tt</DependentUpon>
+      <DependentUpon>LibraryModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Book.cs">
-      <DependentUpon>LibModelDB.tt</DependentUpon>
+      <DependentUpon>LibraryModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\BookAuth.cs">
-      <DependentUpon>LibModelDB.tt</DependentUpon>
+    <Compile Include="Models\Book_Auth.cs">
+      <DependentUpon>LibraryModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\BookGen.cs">
-      <DependentUpon>LibModelDB.tt</DependentUpon>
+    <Compile Include="Models\Book_Gen.cs">
+      <DependentUpon>LibraryModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Editorial.cs">
-      <DependentUpon>LibModelDB.tt</DependentUpon>
+    <Compile Include="Models\Book_Pub.cs">
+      <DependentUpon>LibraryModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Genre.cs">
-      <DependentUpon>LibModelDB.tt</DependentUpon>
+      <DependentUpon>LibraryModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ISBN.cs">
-      <DependentUpon>LibModelDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\LibModelDB.Context.cs">
+    <Compile Include="Models\LibraryModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>LibModelDB.Context.tt</DependentUpon>
+      <DependentUpon>LibraryModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\LibModelDB.cs">
+    <Compile Include="Models\LibraryModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>LibModelDB.tt</DependentUpon>
+      <DependentUpon>LibraryModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\LibModelDB.Designer.cs">
+    <Compile Include="Models\LibraryModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>LibModelDB.edmx</DependentUpon>
+      <DependentUpon>LibraryModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Publisher.cs">
+      <DependentUpon>LibraryModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -179,28 +179,30 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\styles.css" />
+    <Content Include="Data\Script.sql" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\LibModelDB.Context.tt">
+    <Content Include="Models\LibraryModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>LibModelDB.edmx</DependentUpon>
-      <LastGenOutput>LibModelDB.Context.cs</LastGenOutput>
+      <DependentUpon>LibraryModel.edmx</DependentUpon>
+      <LastGenOutput>LibraryModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\LibModelDB.tt">
+    <Content Include="Models\LibraryModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>LibModelDB.edmx</DependentUpon>
-      <LastGenOutput>LibModelDB.cs</LastGenOutput>
+      <DependentUpon>LibraryModel.edmx</DependentUpon>
+      <LastGenOutput>LibraryModel.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\LibModelDB.edmx">
+    <EntityDeploy Include="Models\LibraryModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>LibModelDB.Designer.cs</LastGenOutput>
+      <LastGenOutput>LibraryModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\LibModelDB.edmx.diagram">
-      <DependentUpon>LibModelDB.edmx</DependentUpon>
+    <Content Include="Models\LibraryModel.edmx.diagram">
+      <DependentUpon>LibraryModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -213,6 +215,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\script.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -224,8 +227,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Author\show.cshtml" />
     <Content Include="Views\Author\addAuthor.cshtml" />
@@ -235,6 +236,7 @@
     <Folder Include="Views\Book\" />
     <Folder Include="Views\Editorial\" />
     <Folder Include="Views\Genre\" />
+    <Folder Include="Views\Publisher\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

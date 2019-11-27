@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AccademyLibraryModelStoreContainer" CdmEntityContainer="LibraryEntities">
+    <EntitySetMapping Name="Author">
+      <EntityTypeMapping TypeName="AccademyLibraryModel.Author">
+        <MappingFragment StoreEntitySet="Author">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Nationality" ColumnName="Nationality" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Book">
+      <EntityTypeMapping TypeName="AccademyLibraryModel.Book">
+        <MappingFragment StoreEntitySet="Book">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Subtitle" ColumnName="Subtitle" />
+          <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Book_Auth">
+      <EntityTypeMapping TypeName="AccademyLibraryModel.Book_Auth">
+        <MappingFragment StoreEntitySet="Book_Auth">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="BookId" ColumnName="BookId" />
+          <ScalarProperty Name="AuthId" ColumnName="AuthId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Book_Gen">
+      <EntityTypeMapping TypeName="AccademyLibraryModel.Book_Gen">
+        <MappingFragment StoreEntitySet="Book_Gen">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="BookId" ColumnName="BookId" />
+          <ScalarProperty Name="GenId" ColumnName="GenId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Book_Pub">
+      <EntityTypeMapping TypeName="AccademyLibraryModel.Book_Pub">
+        <MappingFragment StoreEntitySet="Book_Pub">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="BookId" ColumnName="BookId" />
+          <ScalarProperty Name="PubId" ColumnName="PubId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Genre">
+      <EntityTypeMapping TypeName="AccademyLibraryModel.Genre">
+        <MappingFragment StoreEntitySet="Genre">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Publisher">
+      <EntityTypeMapping TypeName="AccademyLibraryModel.Publisher">
+        <MappingFragment StoreEntitySet="Publisher">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

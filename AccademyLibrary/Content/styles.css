@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+:root{
+    --primary-color: #249099;
+    --secondary-color:#31BFCC;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Roboto', Helvetica;
+}
+
+header{
+    height:50px;
+    display: flex;
+    justify-content: center;
+    background-color: var(--primary-color);
+    padding: .5rem 1rem;
+    align-items: center;    
+    color: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 9999;
+}
+
+main {
+    display: flex;
+    flex-wrap: row;
+    height: 100%;
+}
+section {
+    display: flex;
+    flex-wrap: wrap;
+}
+main>div>h2 {
+    position:relative;
+    width: 100%;
+    height:20px;
+    text-align: center;
+}
+button{
+   display: none;
+}
+
+.sideBar {
+    position: sticky;
+    width: 300px;
+    height: 93vh;
+    left: 0;
+    padding-top: 3rem;
+    background-color: var(--secondary-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 10;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.3);
+}
+
+.navList{
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding-top:2rem;
+}
+#action-type{
+    position: relative;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    width: 100%;
+}
+i {
+    position: relative;
+    top: 50%;
+    left:3px;
+    background-color:transparent;
+    
+}
+
+input{
+    height: 3rem;
+    width: 100%;
+    border: none;
+    border-radius: 3px;
+    padding: 0 0 0 2rem;
+    background-color: rgba(255,255,255,.8);
+}
+
+.item{
+    display: inline-block;
+    margin: 1rem 2rem;
+    text-decoration: none;
+    cursor: pointer;
+    color: black;
+    padding: 1rem 7rem;
+
+    background-color:rgba(255,255,255,.8);
+}
+
+.card {
+    width: 200px;
+    height: 250px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+    border-radius: 3px;
+    padding: 0 6px;
+    margin: 8px;
+}
+
+
+
+
+body > footer {
+    display: flex;
+    position: fixed;
+    background-color: var(--primary-color);
+    color: white;
+    bottom: 0;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    padding: 1rem 1rem;
+    z-index: 20;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.3);
+}
+
+a:hover{
+    color: white;
+    background-size: cover;
+    background-color: var(--primary-color);
+}
+a:active{
+        transform: translateY(4px);
+}
+
+

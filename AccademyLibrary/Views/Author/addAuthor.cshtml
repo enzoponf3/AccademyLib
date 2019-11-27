@@ -1,4 +1,4 @@
-﻿
+﻿@model AccademyLibrary.Models.Author
 @{
     Layout = null;
 }
@@ -8,18 +8,22 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>addAuthor</title>
+    <title>Add Author</title>
 </head>
 <body>
+    <header> Add Author</header>
+    <main>
+        <div class="form">
+            @Html.LabelFor(a => a.Name)
+            @Html.EditorFor(a => a.Name, new { htmlAttributes = new { @class = "inputBox", placeholder = "Author Name" } })
 
-    <div>
-        <h2>Author Data</h2>
-        <h3>Name</h3>
-        <input type="text" name="name" value="" />
-        <h3>Nationality</h3>
-        <input type="text" name="nationality" value="" />
-        <button>Add Author!</button>
-    </div>
+            @Html.LabelFor(a => a.Nationality)
+            @Html.EditorFor(a => a.Nationality, new { htmlAttributes = new { @class = "inputBox", placeholder = "ISO code" } })
 
+            <button class="btn">Add</button>
+
+        </div>
+
+    </main>
 </body>
 </html>

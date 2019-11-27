@@ -12,13 +12,13 @@ namespace AccademyLibrary.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class BookAuth
+    public partial class Book_Gen
     {
         public int Id { get; set; }
         public int BookId { get; set; }
-        public int AuthorId { get; set; }
+        public int GenId { get; set; }
     
-        public virtual Author Author { get; set; }
         public virtual Book Book { get; set; }
+        public virtual Genre Genre { get; set; }
     }
 }

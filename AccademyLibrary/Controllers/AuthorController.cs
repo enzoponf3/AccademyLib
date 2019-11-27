@@ -9,36 +9,51 @@ namespace AccademyLibrary.Controllers
 {
     public class AuthorController : Controller
     {
-        AccademyLibraryEntities db = new AccademyLibraryEntities();
+       LibraryEntities db;
+        public AuthorController()
+        {
+            db = new LibraryEntities();
+        }
         public ActionResult show()
         {
-            AccademyLibraryEntities db = new AccademyLibraryEntities();
-
-            List<Author> authors = db.Author.OrderBy(g => g.AuthorName).ToList();
+            List<Author> authors = db.Author.OrderBy(g => g.Name).ToList();
             return View(authors);
 
         }
-        public ActionResult addAuthor()
-        {
-            return View();
-        }
-        [HttpPost]
         public ActionResult addAuthor(string name, string nationality)
         {
-            AccademyLibraryEntities db = new AccademyLibraryEntities();
-
-
-            if (name == null || name.Length == 0)
+            Author au = new Author()
             {
-                return Content("Can't add empty Author");
-            }
-
-            Author author = new Author() { AuthorName = name, Nationality = nationality };
-
+                Name = name,
+                Nationality = nationality
+            };
+            return View(au);
+        }
+        [HttpPost]
+        public ActionResult addAuthor(Author author)
+        {
             db.Author.Add(author);
+            db.Entry(author).State = System.Data.Entity.EntityState.Added;
             db.SaveChanges();
             return RedirectToAction("show"); 
 
+        }
+
+        public ActionResult Edit(int id)
+        {
+            Author author = db.Author.Find(id);
+            ViewBag.PageTitle = "Author";
+            return View(author);
+
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Author auth)
+        {
+            db.Author.Attach(auth);
+            db.Entry(auth).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("show");
         }
     }
 }
