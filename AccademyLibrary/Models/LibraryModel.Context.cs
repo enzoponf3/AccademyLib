@@ -13,10 +13,10 @@ namespace AccademyLibrary.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class LibraryEntities : DbContext
+    public partial class AccademyLibraryEntities : DbContext
     {
-        public LibraryEntities()
-            : base("name=LibraryEntities")
+        public AccademyLibraryEntities()
+            : base("name=AccademyLibraryEntities")
         {
         }
     

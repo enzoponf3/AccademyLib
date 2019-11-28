@@ -1,22 +1,39 @@
 ﻿
-let f = document.createDocumentFragment()
 let cCont = document.getElementById("cardsContainer")
-let div = document.createElement("div")
-let img = document.createElement("img")
-let h2 = document.createElement("h2")
-let span = document.createElement("span")
-let br = document.createElement("br")
+let f = document.createDocumentFragment()
 
 
+var xhr = new XMLHttpRequest
 
 
 document.onload = function{
-    /*
-        Hace falta cargar los datos en la base para poder traer las tiles!
-     */    
+
+    xhr.open("GET", "/Book/getBooks")
+    xhr.send()
+    if ((xhr.status == 200) && (xhr.readyState == 4)) {
+        let authors = xhr.response
+        foreach(var au in authors) {
+            let div = document.createElement("div")
+            let img = document.createElement("img")
+            let h2 = document.createElement("h2")
+            let span = document.createElement("span")
+
+            
+            h2.innerHTML = au.Title
+            span.innerHTML = au.Subtitle + "<br/>" + au.ISBN
+            div.appendChild(h2)
+            div.appendChild(span)
+            f.appendChild(div)
+        }
+        eCont.appendChild(f)
+    }
+
 }
 
 
+    /*
+        Hace falta cargar los datos en la base para poder traer las tiles!
+     */    
 
     /*
      * var req = new XMLHttpRequest();

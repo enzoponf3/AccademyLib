@@ -4,14 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="162f68bbfee84a23b72c36bf9802547c" Name="Diagram1">
-        <EntityTypeShape EntityType="AccademyLibraryModel.Author" Width="1.5" PointX="0.75" PointY="7" IsExpanded="true" />
-        <EntityTypeShape EntityType="AccademyLibraryModel.Book" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="AccademyLibraryModel.Book_Auth" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
+      <Diagram DiagramId="8ee66f59adee4842bcb892d9b4f4dad5" Name="Diagram1">
+        <EntityTypeShape EntityType="AccademyLibraryModel.Author" Width="1.5" PointX="6" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AccademyLibraryModel.Book" Width="1.5" PointX="4.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AccademyLibraryModel.Book_Auth" Width="1.5" PointX="7.5" PointY="3.875" IsExpanded="true" />
         <EntityTypeShape EntityType="AccademyLibraryModel.Book_Gen" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="AccademyLibraryModel.Book_Pub" Width="1.5" PointX="3" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AccademyLibraryModel.Book_Pub" Width="1.5" PointX="1" PointY="3.875" IsExpanded="true" />
         <EntityTypeShape EntityType="AccademyLibraryModel.Genre" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="AccademyLibraryModel.Publisher" Width="1.5" PointX="0.75" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AccademyLibraryModel.Publisher" Width="1.5" PointX="2.5" PointY="6.5" IsExpanded="true" />
         <AssociationConnector Association="AccademyLibraryModel.FK_AuthG" ManuallyRouted="false" />
         <AssociationConnector Association="AccademyLibraryModel.FK_BookA" ManuallyRouted="false" />
         <AssociationConnector Association="AccademyLibraryModel.FK_BookG" ManuallyRouted="false" />

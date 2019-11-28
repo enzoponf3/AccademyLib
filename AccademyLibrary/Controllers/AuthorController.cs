@@ -9,10 +9,10 @@ namespace AccademyLibrary.Controllers
 {
     public class AuthorController : Controller
     {
-       LibraryEntities db;
+       AccademyLibraryEntities db;
         public AuthorController()
         {
-            db = new LibraryEntities();
+            db = new AccademyLibraryEntities();
         }
         public ActionResult show()
         {
@@ -54,6 +54,11 @@ namespace AccademyLibrary.Controllers
             db.Entry(auth).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("show");
+        }
+
+        public JsonResult getAuthors()
+        {
+            return Json(db.Author.OrderBy(a => a.Name), JsonRequestBehavior.AllowGet);
         }
     }
 }

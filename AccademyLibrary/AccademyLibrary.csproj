@@ -155,18 +155,18 @@
       <DependentUpon>LibraryModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LibraryModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>LibraryModel.Context.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="Models\LibraryModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>LibraryModel.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="Models\LibraryModel.Designer.cs">
-      <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
       <DependentUpon>LibraryModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Publisher.cs">
@@ -187,13 +187,16 @@
     <Content Include="Content\Site.css" />
     <Content Include="Models\LibraryModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>LibraryModel.edmx</DependentUpon>
       <LastGenOutput>LibraryModel.Context.cs</LastGenOutput>
+      <DependentUpon>LibraryModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\LibraryModel.edmx.diagram">
+      <DependentUpon>LibraryModel.edmx</DependentUpon>
     </Content>
     <Content Include="Models\LibraryModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>LibraryModel.edmx</DependentUpon>
       <LastGenOutput>LibraryModel.cs</LastGenOutput>
+      <DependentUpon>LibraryModel.edmx</DependentUpon>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -201,9 +204,6 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>LibraryModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\LibraryModel.edmx.diagram">
-      <DependentUpon>LibraryModel.edmx</DependentUpon>
-    </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

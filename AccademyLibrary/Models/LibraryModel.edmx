@@ -62,7 +62,9 @@
           <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <Association Name="FK_AuthG">
-          <End Role="Author" Type="Self.Author" Multiplicity="1" />
+          <End Role="Author" Type="Self.Author" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Book_Auth" Type="Self.Book_Auth" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Author">
@@ -74,7 +76,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_AuthP">
-          <End Role="Publisher" Type="Self.Publisher" Multiplicity="1" />
+          <End Role="Publisher" Type="Self.Publisher" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Book_Pub" Type="Self.Book_Pub" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Publisher">
@@ -86,7 +90,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_BookA">
-          <End Role="Book" Type="Self.Book" Multiplicity="1" />
+          <End Role="Book" Type="Self.Book" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Book_Auth" Type="Self.Book_Auth" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Book">
@@ -98,7 +104,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_BookG">
-          <End Role="Book" Type="Self.Book" Multiplicity="1" />
+          <End Role="Book" Type="Self.Book" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Book_Gen" Type="Self.Book_Gen" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Book">
@@ -110,7 +118,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_BookP">
-          <End Role="Book" Type="Self.Book" Multiplicity="1" />
+          <End Role="Book" Type="Self.Book" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Book_Pub" Type="Self.Book_Pub" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Book">
@@ -122,7 +132,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_GenG">
-          <End Role="Genre" Type="Self.Genre" Multiplicity="1" />
+          <End Role="Genre" Type="Self.Genre" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Book_Gen" Type="Self.Book_Gen" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Genre">
@@ -240,7 +252,9 @@
           <NavigationProperty Name="Book_Pub" Relationship="Self.FK_AuthP" FromRole="Publisher" ToRole="Book_Pub" />
         </EntityType>
         <Association Name="FK_AuthG">
-          <End Role="Author" Type="Self.Author" Multiplicity="1" />
+          <End Role="Author" Type="Self.Author" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Book_Auth" Type="Self.Book_Auth" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Author">
@@ -252,7 +266,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_BookA">
-          <End Role="Book" Type="Self.Book" Multiplicity="1" />
+          <End Role="Book" Type="Self.Book" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Book_Auth" Type="Self.Book_Auth" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Book">
@@ -264,7 +280,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_BookG">
-          <End Role="Book" Type="Self.Book" Multiplicity="1" />
+          <End Role="Book" Type="Self.Book" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Book_Gen" Type="Self.Book_Gen" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Book">
@@ -276,7 +294,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_BookP">
-          <End Role="Book" Type="Self.Book" Multiplicity="1" />
+          <End Role="Book" Type="Self.Book" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Book_Pub" Type="Self.Book_Pub" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Book">
@@ -288,7 +308,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_GenG">
-          <End Role="Genre" Type="Self.Genre" Multiplicity="1" />
+          <End Role="Genre" Type="Self.Genre" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Book_Gen" Type="Self.Book_Gen" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Genre">
@@ -300,7 +322,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_AuthP">
-          <End Role="Publisher" Type="Self.Publisher" Multiplicity="1" />
+          <End Role="Publisher" Type="Self.Publisher" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Book_Pub" Type="Self.Book_Pub" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Publisher">
@@ -311,7 +335,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="LibraryEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="AccademyLibraryEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Author" EntityType="Self.Author" />
           <EntitySet Name="Book" EntityType="Self.Book" />
           <EntitySet Name="Book_Auth" EntityType="Self.Book_Auth" />
@@ -349,7 +373,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="AccademyLibraryModelStoreContainer" CdmEntityContainer="LibraryEntities">
+        <EntityContainerMapping StorageEntityContainer="AccademyLibraryModelStoreContainer" CdmEntityContainer="AccademyLibraryEntities">
           <EntitySetMapping Name="Author">
             <EntityTypeMapping TypeName="AccademyLibraryModel.Author">
               <MappingFragment StoreEntitySet="Author">
