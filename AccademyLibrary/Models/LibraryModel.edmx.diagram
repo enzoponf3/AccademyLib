@@ -5,19 +5,19 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="8ee66f59adee4842bcb892d9b4f4dad5" Name="Diagram1">
-        <EntityTypeShape EntityType="AccademyLibraryModel.Author" Width="1.5" PointX="6" PointY="6.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="AccademyLibraryModel.Book" Width="1.5" PointX="4.25" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="AccademyLibraryModel.Book_Auth" Width="1.5" PointX="7.5" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="AccademyLibraryModel.Book_Gen" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="AccademyLibraryModel.Book_Pub" Width="1.5" PointX="1" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="AccademyLibraryModel.Genre" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="AccademyLibraryModel.Publisher" Width="1.5" PointX="2.5" PointY="6.5" IsExpanded="true" />
-        <AssociationConnector Association="AccademyLibraryModel.FK_AuthG" ManuallyRouted="false" />
-        <AssociationConnector Association="AccademyLibraryModel.FK_BookA" ManuallyRouted="false" />
-        <AssociationConnector Association="AccademyLibraryModel.FK_BookG" ManuallyRouted="false" />
-        <AssociationConnector Association="AccademyLibraryModel.FK_BookP" ManuallyRouted="false" />
-        <AssociationConnector Association="AccademyLibraryModel.FK_GenG" ManuallyRouted="false" />
-        <AssociationConnector Association="AccademyLibraryModel.FK_AuthP" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="AccademyLibraryModel.Author" Width="1.5" PointX="0.75" PointY="10" />
+        <EntityTypeShape EntityType="AccademyLibraryModel.Book" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="AccademyLibraryModel.Book_Auth" Width="1.5" PointX="3" PointY="6.875" />
+        <EntityTypeShape EntityType="AccademyLibraryModel.Book_Gen" Width="1.5" PointX="3" PointY="3.875" />
+        <EntityTypeShape EntityType="AccademyLibraryModel.Book_Pub" Width="1.5" PointX="3" PointY="0.875" />
+        <EntityTypeShape EntityType="AccademyLibraryModel.Genre" Width="1.5" PointX="0.75" PointY="7" />
+        <EntityTypeShape EntityType="AccademyLibraryModel.Publisher" Width="1.5" PointX="0.75" PointY="1.125" />
+        <AssociationConnector Association="AccademyLibraryModel.FK_AuthG" />
+        <AssociationConnector Association="AccademyLibraryModel.FK_BookA" />
+        <AssociationConnector Association="AccademyLibraryModel.FK_BookG" />
+        <AssociationConnector Association="AccademyLibraryModel.FK_BookP" />
+        <AssociationConnector Association="AccademyLibraryModel.FK_GenG" />
+        <AssociationConnector Association="AccademyLibraryModel.FK_AuthP" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
