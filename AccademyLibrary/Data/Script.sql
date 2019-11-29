@@ -26,7 +26,10 @@ create table Book
 	Title varchar (100) not null,
 	Subtitle varchar (100),
 	ISBN varchar (13) not null,
-	constraint UQ_ISBN unique (ISBN)
+	constraint UQ_ISBN unique (ISBN),
+	PubId int not null
+	constraint FK_Publisher foreign key (PubId)
+		references Publisher(Id)
 );
 
 
@@ -39,42 +42,28 @@ create table Genre
 );
 
 create table Book_Gen
-(
-	Id int primary key identity (1,1),
+(	
 	BookId int not null,
 	GenId int not null,
-	constraint UQ_Book_Gen unique (BookId, GenId),
 	constraint FK_BookG foreign key (BookId)
 		references Book(Id) on delete cascade,
 	constraint FK_GenG foreign key (GenId)
-		references Genre(Id) on delete cascade
+		references Genre(Id) on delete cascade,
+	constraint PK_Book_Gen primary key (BookId, GenId)
 );
 
 
 create table Book_Auth
 (
-	Id int primary key identity (1,1),
 	BookId int not null,
 	AuthId int not null,
-	constraint UQ_Book_Auth unique (BookId, AuthId),
 	constraint FK_BookA foreign key (BookId)
 		references Book(Id) on delete cascade,
 	constraint FK_AuthG foreign key (AuthId)
-		references Author(Id) on delete cascade
+		references Author(Id) on delete cascade,
+	constraint PK_Book_Au primary key (BookID,AuthId)
 
 );
-
-create table Book_Pub
-(
-	Id int primary key identity (1,1),
-	BookId int not null,
-	PubId int not null,
-	constraint UQ_Book_Pub unique (BookId, PubId),
-	constraint FK_BookP foreign key (BookId)
-		references Book(Id) on delete cascade,
-	constraint FK_AuthP foreign key (PubId)
-		references Publisher(Id) on delete cascade
-)
 
 insert into Author
 ([Name], Nationality)
@@ -97,11 +86,18 @@ values
 ('Adventure','An adventure is an event or series of events that happens outside the course of the protagonist''s ordinary life, usually accompanied by danger, often by physical action.'),
 ('Science Fiction','Science fiction (sometimes called sci-fi or simply SF) is a genre of speculative fiction that typically deals with imaginative and futuristic concepts such as advanced science and technology, space exploration, time travel, parallel universes, and extraterrestrial life.')
 
+insert into Book
+([Title],[Subtitle],[ISBN],PubId)
+values 
+('Harry Potter','And the Philosopher''''s Stone','8745091276435',(select Id from Publisher where Publisher.[Name] = 'Bloomsbury Publishing'
+))
+
+
+
 select * from Genre;
 select * from Author;
 select * from Publisher;
-
-
+select * from Book
 
 
 

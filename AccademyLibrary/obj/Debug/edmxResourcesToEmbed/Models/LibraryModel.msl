@@ -13,36 +13,10 @@
     <EntitySetMapping Name="Book">
       <EntityTypeMapping TypeName="AccademyLibraryModel.Book">
         <MappingFragment StoreEntitySet="Book">
+          <ScalarProperty Name="PubId" ColumnName="PubId" />
           <ScalarProperty Name="ISBN" ColumnName="ISBN" />
           <ScalarProperty Name="Subtitle" ColumnName="Subtitle" />
           <ScalarProperty Name="Title" ColumnName="Title" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Book_Auth">
-      <EntityTypeMapping TypeName="AccademyLibraryModel.Book_Auth">
-        <MappingFragment StoreEntitySet="Book_Auth">
-          <ScalarProperty Name="AuthId" ColumnName="AuthId" />
-          <ScalarProperty Name="BookId" ColumnName="BookId" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Book_Gen">
-      <EntityTypeMapping TypeName="AccademyLibraryModel.Book_Gen">
-        <MappingFragment StoreEntitySet="Book_Gen">
-          <ScalarProperty Name="GenId" ColumnName="GenId" />
-          <ScalarProperty Name="BookId" ColumnName="BookId" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Book_Pub">
-      <EntityTypeMapping TypeName="AccademyLibraryModel.Book_Pub">
-        <MappingFragment StoreEntitySet="Book_Pub">
-          <ScalarProperty Name="PubId" ColumnName="PubId" />
-          <ScalarProperty Name="BookId" ColumnName="BookId" />
           <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -64,5 +38,21 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <AssociationSetMapping Name="Book_Auth" TypeName="AccademyLibraryModel.Book_Auth" StoreEntitySet="Book_Auth">
+      <EndProperty Name="Book">
+        <ScalarProperty Name="Id" ColumnName="BookId" />
+      </EndProperty>
+      <EndProperty Name="Author">
+        <ScalarProperty Name="Id" ColumnName="AuthId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="Book_Gen" TypeName="AccademyLibraryModel.Book_Gen" StoreEntitySet="Book_Gen">
+      <EndProperty Name="Genre">
+        <ScalarProperty Name="Id" ColumnName="GenId" />
+      </EndProperty>
+      <EndProperty Name="Book">
+        <ScalarProperty Name="Id" ColumnName="BookId" />
+      </EndProperty>
+    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping>

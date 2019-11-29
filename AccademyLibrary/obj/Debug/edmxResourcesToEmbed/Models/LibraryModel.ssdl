@@ -16,30 +16,23 @@
     <Property Name="Title" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="Subtitle" Type="varchar" MaxLength="100" />
     <Property Name="ISBN" Type="varchar" MaxLength="13" Nullable="false" />
+    <Property Name="PubId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Book_Auth">
     <Key>
-      <PropertyRef Name="Id" />
+      <PropertyRef Name="BookId" />
+      <PropertyRef Name="AuthId" />
     </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="BookId" Type="int" Nullable="false" />
     <Property Name="AuthId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Book_Gen">
     <Key>
-      <PropertyRef Name="Id" />
+      <PropertyRef Name="BookId" />
+      <PropertyRef Name="GenId" />
     </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="BookId" Type="int" Nullable="false" />
     <Property Name="GenId" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Book_Pub">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="BookId" Type="int" Nullable="false" />
-    <Property Name="PubId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Genre">
     <Key>
@@ -67,20 +60,6 @@
       </Principal>
       <Dependent Role="Book_Auth">
         <PropertyRef Name="AuthId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_AuthP">
-    <End Role="Publisher" Type="Self.Publisher" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="Book_Pub" Type="Self.Book_Pub" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Publisher">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Book_Pub">
-        <PropertyRef Name="PubId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -112,20 +91,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_BookP">
-    <End Role="Book" Type="Self.Book" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="Book_Pub" Type="Self.Book_Pub" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Book">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Book_Pub">
-        <PropertyRef Name="BookId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_GenG">
     <End Role="Genre" Type="Self.Genre" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -140,21 +105,28 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Publisher">
+    <End Role="Publisher" Type="Self.Publisher" Multiplicity="1" />
+    <End Role="Book" Type="Self.Book" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Publisher">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Book">
+        <PropertyRef Name="PubId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="AccademyLibraryModelStoreContainer">
     <EntitySet Name="Author" EntityType="Self.Author" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Book" EntityType="Self.Book" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Book_Auth" EntityType="Self.Book_Auth" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Book_Gen" EntityType="Self.Book_Gen" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Book_Pub" EntityType="Self.Book_Pub" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Genre" EntityType="Self.Genre" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Publisher" EntityType="Self.Publisher" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_AuthG" Association="Self.FK_AuthG">
       <End Role="Author" EntitySet="Author" />
       <End Role="Book_Auth" EntitySet="Book_Auth" />
-    </AssociationSet>
-    <AssociationSet Name="FK_AuthP" Association="Self.FK_AuthP">
-      <End Role="Publisher" EntitySet="Publisher" />
-      <End Role="Book_Pub" EntitySet="Book_Pub" />
     </AssociationSet>
     <AssociationSet Name="FK_BookA" Association="Self.FK_BookA">
       <End Role="Book" EntitySet="Book" />
@@ -164,13 +136,13 @@
       <End Role="Book" EntitySet="Book" />
       <End Role="Book_Gen" EntitySet="Book_Gen" />
     </AssociationSet>
-    <AssociationSet Name="FK_BookP" Association="Self.FK_BookP">
-      <End Role="Book" EntitySet="Book" />
-      <End Role="Book_Pub" EntitySet="Book_Pub" />
-    </AssociationSet>
     <AssociationSet Name="FK_GenG" Association="Self.FK_GenG">
       <End Role="Genre" EntitySet="Genre" />
       <End Role="Book_Gen" EntitySet="Book_Gen" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Publisher" Association="Self.FK_Publisher">
+      <End Role="Publisher" EntitySet="Publisher" />
+      <End Role="Book" EntitySet="Book" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

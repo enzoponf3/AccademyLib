@@ -17,7 +17,7 @@ namespace AccademyLibrary.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Author()
         {
-            this.Book_Auth = new HashSet<Book_Auth>();
+            this.Book = new HashSet<Book>();
         }
     
         public int Id { get; set; }
@@ -25,6 +25,6 @@ namespace AccademyLibrary.Models
         public string Nationality { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Book_Auth> Book_Auth { get; set; }
+        public virtual ICollection<Book> Book { get; set; }
     }
 }

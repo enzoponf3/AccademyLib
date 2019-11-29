@@ -17,7 +17,7 @@ namespace AccademyLibrary.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Genre()
         {
-            this.Book_Gen = new HashSet<Book_Gen>();
+            this.Book = new HashSet<Book>();
         }
     
         public int Id { get; set; }
@@ -25,6 +25,6 @@ namespace AccademyLibrary.Models
         public string Description { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Book_Gen> Book_Gen { get; set; }
+        public virtual ICollection<Book> Book { get; set; }
     }
 }

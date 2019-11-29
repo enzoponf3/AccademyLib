@@ -17,21 +17,20 @@ namespace AccademyLibrary.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Book()
         {
-            this.Book_Auth = new HashSet<Book_Auth>();
-            this.Book_Gen = new HashSet<Book_Gen>();
-            this.Book_Pub = new HashSet<Book_Pub>();
+            this.Author = new HashSet<Author>();
+            this.Genre = new HashSet<Genre>();
         }
     
         public int Id { get; set; }
         public string Title { get; set; }
         public string Subtitle { get; set; }
         public string ISBN { get; set; }
+        public int PubId { get; set; }
     
+        public virtual Publisher Publisher { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Book_Auth> Book_Auth { get; set; }
+        public virtual ICollection<Author> Author { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Book_Gen> Book_Gen { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Book_Pub> Book_Pub { get; set; }
+        public virtual ICollection<Genre> Genre { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AccademyLibrary.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +9,21 @@ namespace AccademyLibrary.Controllers
 {
     public class GenreController : Controller
     {
+        private AccademyLibraryEntities db;
+        public GenreController()
+        {
+            db = new AccademyLibraryEntities();
+        }
         // GET: Genre
         public ActionResult Index()
         {
             return View();
+        }
+
+        [HttpGet]
+        public JsonResult getGenre()
+        {
+            return Json(db.Genre.Select(g => new { Name = g.Name, Description = g.Description }).ToList(), JsonRequestBehavior.AllowGet);
         }
     }
 }

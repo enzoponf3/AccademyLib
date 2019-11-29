@@ -55,10 +55,10 @@ namespace AccademyLibrary.Controllers
             db.SaveChanges();
             return RedirectToAction("show");
         }
-
+        [HttpGet]
         public JsonResult getAuthors()
         {
-            return Json(db.Author.OrderBy(a => a.Name), JsonRequestBehavior.AllowGet);
+            return Json(db.Author.Select(a => new { Name = a.Name, Nationality = a.Nationality}).ToList(), JsonRequestBehavior.AllowGet);
         }
     }
 }

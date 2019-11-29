@@ -27,9 +27,6 @@ namespace AccademyLibrary.Models
     
         public virtual DbSet<Author> Author { get; set; }
         public virtual DbSet<Book> Book { get; set; }
-        public virtual DbSet<Book_Auth> Book_Auth { get; set; }
-        public virtual DbSet<Book_Gen> Book_Gen { get; set; }
-        public virtual DbSet<Book_Pub> Book_Pub { get; set; }
         public virtual DbSet<Genre> Genre { get; set; }
         public virtual DbSet<Publisher> Publisher { get; set; }
     }

@@ -5,19 +5,13 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="8ee66f59adee4842bcb892d9b4f4dad5" Name="Diagram1">
-        <EntityTypeShape EntityType="AccademyLibraryModel.Author" Width="1.5" PointX="0.75" PointY="10" />
-        <EntityTypeShape EntityType="AccademyLibraryModel.Book" Width="1.5" PointX="0.75" PointY="3.75" />
-        <EntityTypeShape EntityType="AccademyLibraryModel.Book_Auth" Width="1.5" PointX="3" PointY="6.875" />
-        <EntityTypeShape EntityType="AccademyLibraryModel.Book_Gen" Width="1.5" PointX="3" PointY="3.875" />
-        <EntityTypeShape EntityType="AccademyLibraryModel.Book_Pub" Width="1.5" PointX="3" PointY="0.875" />
-        <EntityTypeShape EntityType="AccademyLibraryModel.Genre" Width="1.5" PointX="0.75" PointY="7" />
-        <EntityTypeShape EntityType="AccademyLibraryModel.Publisher" Width="1.5" PointX="0.75" PointY="1.125" />
-        <AssociationConnector Association="AccademyLibraryModel.FK_AuthG" />
-        <AssociationConnector Association="AccademyLibraryModel.FK_BookA" />
-        <AssociationConnector Association="AccademyLibraryModel.FK_BookG" />
-        <AssociationConnector Association="AccademyLibraryModel.FK_BookP" />
-        <AssociationConnector Association="AccademyLibraryModel.FK_GenG" />
-        <AssociationConnector Association="AccademyLibraryModel.FK_AuthP" />
+        <EntityTypeShape EntityType="AccademyLibraryModel.Author" Width="1.5" PointX="0.75" PointY="1.375" />
+        <EntityTypeShape EntityType="AccademyLibraryModel.Book" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="AccademyLibraryModel.Genre" Width="1.5" PointX="5.25" PointY="1.375" />
+        <EntityTypeShape EntityType="AccademyLibraryModel.Publisher" Width="1.5" PointX="0.75" PointY="5.375" />
+        <AssociationConnector Association="AccademyLibraryModel.FK_Publisher" />
+        <AssociationConnector Association="AccademyLibraryModel.Book_Auth" />
+        <AssociationConnector Association="AccademyLibraryModel.Book_Gen" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

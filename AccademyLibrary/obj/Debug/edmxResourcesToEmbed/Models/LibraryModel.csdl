@@ -3,34 +3,19 @@
   <EntityContainer Name="AccademyLibraryEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Author" EntityType="AccademyLibraryModel.Author" />
     <EntitySet Name="Book" EntityType="AccademyLibraryModel.Book" />
-    <EntitySet Name="Book_Auth" EntityType="AccademyLibraryModel.Book_Auth" />
-    <EntitySet Name="Book_Gen" EntityType="AccademyLibraryModel.Book_Gen" />
-    <EntitySet Name="Book_Pub" EntityType="AccademyLibraryModel.Book_Pub" />
     <EntitySet Name="Genre" EntityType="AccademyLibraryModel.Genre" />
     <EntitySet Name="Publisher" EntityType="AccademyLibraryModel.Publisher" />
-    <AssociationSet Name="FK_AuthG" Association="AccademyLibraryModel.FK_AuthG">
-      <End Role="Author" EntitySet="Author" />
-      <End Role="Book_Auth" EntitySet="Book_Auth" />
-    </AssociationSet>
-    <AssociationSet Name="FK_BookA" Association="AccademyLibraryModel.FK_BookA">
-      <End Role="Book" EntitySet="Book" />
-      <End Role="Book_Auth" EntitySet="Book_Auth" />
-    </AssociationSet>
-    <AssociationSet Name="FK_BookG" Association="AccademyLibraryModel.FK_BookG">
-      <End Role="Book" EntitySet="Book" />
-      <End Role="Book_Gen" EntitySet="Book_Gen" />
-    </AssociationSet>
-    <AssociationSet Name="FK_BookP" Association="AccademyLibraryModel.FK_BookP">
-      <End Role="Book" EntitySet="Book" />
-      <End Role="Book_Pub" EntitySet="Book_Pub" />
-    </AssociationSet>
-    <AssociationSet Name="FK_GenG" Association="AccademyLibraryModel.FK_GenG">
-      <End Role="Genre" EntitySet="Genre" />
-      <End Role="Book_Gen" EntitySet="Book_Gen" />
-    </AssociationSet>
-    <AssociationSet Name="FK_AuthP" Association="AccademyLibraryModel.FK_AuthP">
+    <AssociationSet Name="FK_Publisher" Association="AccademyLibraryModel.FK_Publisher">
       <End Role="Publisher" EntitySet="Publisher" />
-      <End Role="Book_Pub" EntitySet="Book_Pub" />
+      <End Role="Book" EntitySet="Book" />
+    </AssociationSet>
+    <AssociationSet Name="Book_Auth" Association="AccademyLibraryModel.Book_Auth">
+      <End Role="Author" EntitySet="Author" />
+      <End Role="Book" EntitySet="Book" />
+    </AssociationSet>
+    <AssociationSet Name="Book_Gen" Association="AccademyLibraryModel.Book_Gen">
+      <End Role="Book" EntitySet="Book" />
+      <End Role="Genre" EntitySet="Genre" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Author">
@@ -40,7 +25,7 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="Nationality" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Book_Auth" Relationship="AccademyLibraryModel.FK_AuthG" FromRole="Author" ToRole="Book_Auth" />
+    <NavigationProperty Name="Book" Relationship="AccademyLibraryModel.Book_Auth" FromRole="Author" ToRole="Book" />
   </EntityType>
   <EntityType Name="Book">
     <Key>
@@ -50,39 +35,10 @@
     <Property Name="Title" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="Subtitle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="ISBN" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Book_Auth" Relationship="AccademyLibraryModel.FK_BookA" FromRole="Book" ToRole="Book_Auth" />
-    <NavigationProperty Name="Book_Gen" Relationship="AccademyLibraryModel.FK_BookG" FromRole="Book" ToRole="Book_Gen" />
-    <NavigationProperty Name="Book_Pub" Relationship="AccademyLibraryModel.FK_BookP" FromRole="Book" ToRole="Book_Pub" />
-  </EntityType>
-  <EntityType Name="Book_Auth">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="BookId" Type="Int32" Nullable="false" />
-    <Property Name="AuthId" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Author" Relationship="AccademyLibraryModel.FK_AuthG" FromRole="Book_Auth" ToRole="Author" />
-    <NavigationProperty Name="Book" Relationship="AccademyLibraryModel.FK_BookA" FromRole="Book_Auth" ToRole="Book" />
-  </EntityType>
-  <EntityType Name="Book_Gen">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="BookId" Type="Int32" Nullable="false" />
-    <Property Name="GenId" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Book" Relationship="AccademyLibraryModel.FK_BookG" FromRole="Book_Gen" ToRole="Book" />
-    <NavigationProperty Name="Genre" Relationship="AccademyLibraryModel.FK_GenG" FromRole="Book_Gen" ToRole="Genre" />
-  </EntityType>
-  <EntityType Name="Book_Pub">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="BookId" Type="Int32" Nullable="false" />
     <Property Name="PubId" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Book" Relationship="AccademyLibraryModel.FK_BookP" FromRole="Book_Pub" ToRole="Book" />
-    <NavigationProperty Name="Publisher" Relationship="AccademyLibraryModel.FK_AuthP" FromRole="Book_Pub" ToRole="Publisher" />
+    <NavigationProperty Name="Publisher" Relationship="AccademyLibraryModel.FK_Publisher" FromRole="Book" ToRole="Publisher" />
+    <NavigationProperty Name="Author" Relationship="AccademyLibraryModel.Book_Auth" FromRole="Book" ToRole="Author" />
+    <NavigationProperty Name="Genre" Relationship="AccademyLibraryModel.Book_Gen" FromRole="Book" ToRole="Genre" />
   </EntityType>
   <EntityType Name="Genre">
     <Key>
@@ -91,7 +47,7 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="Description" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Book_Gen" Relationship="AccademyLibraryModel.FK_GenG" FromRole="Genre" ToRole="Book_Gen" />
+    <NavigationProperty Name="Book" Relationship="AccademyLibraryModel.Book_Gen" FromRole="Genre" ToRole="Book" />
   </EntityType>
   <EntityType Name="Publisher">
     <Key>
@@ -99,90 +55,26 @@
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Book_Pub" Relationship="AccademyLibraryModel.FK_AuthP" FromRole="Publisher" ToRole="Book_Pub" />
+    <NavigationProperty Name="Book" Relationship="AccademyLibraryModel.FK_Publisher" FromRole="Publisher" ToRole="Book" />
   </EntityType>
-  <Association Name="FK_AuthG">
-    <End Type="AccademyLibraryModel.Author" Role="Author" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Type="AccademyLibraryModel.Book_Auth" Role="Book_Auth" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Author">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Book_Auth">
-        <PropertyRef Name="AuthId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_BookA">
-    <End Type="AccademyLibraryModel.Book" Role="Book" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Type="AccademyLibraryModel.Book_Auth" Role="Book_Auth" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Book">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Book_Auth">
-        <PropertyRef Name="BookId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_BookG">
-    <End Type="AccademyLibraryModel.Book" Role="Book" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Type="AccademyLibraryModel.Book_Gen" Role="Book_Gen" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Book">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Book_Gen">
-        <PropertyRef Name="BookId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_BookP">
-    <End Type="AccademyLibraryModel.Book" Role="Book" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Type="AccademyLibraryModel.Book_Pub" Role="Book_Pub" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Book">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Book_Pub">
-        <PropertyRef Name="BookId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_GenG">
-    <End Type="AccademyLibraryModel.Genre" Role="Genre" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Type="AccademyLibraryModel.Book_Gen" Role="Book_Gen" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Genre">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Book_Gen">
-        <PropertyRef Name="GenId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_AuthP">
-    <End Type="AccademyLibraryModel.Publisher" Role="Publisher" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Type="AccademyLibraryModel.Book_Pub" Role="Book_Pub" Multiplicity="*" />
+  <Association Name="FK_Publisher">
+    <End Type="AccademyLibraryModel.Publisher" Role="Publisher" Multiplicity="1" />
+    <End Type="AccademyLibraryModel.Book" Role="Book" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Publisher">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="Book_Pub">
+      <Dependent Role="Book">
         <PropertyRef Name="PubId" />
       </Dependent>
     </ReferentialConstraint>
+  </Association>
+  <Association Name="Book_Auth">
+    <End Type="AccademyLibraryModel.Author" Role="Author" Multiplicity="*" />
+    <End Type="AccademyLibraryModel.Book" Role="Book" Multiplicity="*" />
+  </Association>
+  <Association Name="Book_Gen">
+    <End Type="AccademyLibraryModel.Book" Role="Book" Multiplicity="*" />
+    <End Type="AccademyLibraryModel.Genre" Role="Genre" Multiplicity="*" />
   </Association>
 </Schema>

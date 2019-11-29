@@ -1,43 +1,58 @@
 ﻿<!DOCTYPE html>
-<html>
+
+
+<html lang="es">
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="~/Content/styles.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+    <title>Document</title>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Nombre de la aplicación", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+    <header>
+        <div>
+            <h1>Accademy Library</h1>
+            <div id="search-type">
+                <i class="material-icons">search</i>
+                <input id="topSearch" type="text" placeholder="Buscar..." name="" id="">
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
-        </footer>
-    </div>
+            <div>
+                <nav class="navList">
+                    <a id="libro" class="item">Libro</a>
+                    <a id="gditorial" class="item">Editorial</a>
+                    <a id="genero" class="item">Género</a>
+                    <a id="autor" class="item">Autor</a>
+                </nav>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+            </div>
+            <button class="" id="navBar">navBar</button>
+
+        </div>
+    </header>
+
+    <main>
+        </div>
+        <div>
+            <br />
+            <h2 id="sectionTitle">Libros</h2> <br />
+            <section id="cardsContainer">
+                <div class="card">
+                    <img src="" alt="Alternate Text" />
+                    <h2>Titulo</h2>
+                    <span>Titulo <br /> Autor: Autor</span>
+
+                </div>
+        </div>
+
+
+        </section>
+    </main>
+    @RenderBody()
+    <footer>&copy; Copyleft - 2019</footer>
+    <script src="~/Scripts/script.js"></script>
 </body>
 </html>
