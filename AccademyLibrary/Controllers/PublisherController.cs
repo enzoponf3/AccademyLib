@@ -23,7 +23,7 @@ namespace AccademyLibrary.Controllers
         [HttpGet]
         public JsonResult getPublishers()
         {
-            return Json(db.Publisher.Select(p => new { Name = p.Name }).ToList(), JsonRequestBehavior.AllowGet);
+            return Json(db.Publisher.Select(p => new { Id = p.Id, Name = p.Name }).ToList(), JsonRequestBehavior.AllowGet);
         }
     }
 }

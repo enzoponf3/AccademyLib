@@ -21,7 +21,7 @@ namespace AccademyLibrary.Controllers
         [HttpGet]
         public JsonResult getBooks()
         {
-            return Json(db.Book.Select(b=> new {Title = b.Title, Subtitle = b.Subtitle, ISBN=b.ISBN, Pub = b.Author.ToList() }).ToList(),JsonRequestBehavior.AllowGet);
+            return Json(db.Book.Select(b=> new { Id = b.Id, Title = b.Title, Subtitle = b.Subtitle, ISBN=b.ISBN, Pub = b.Author.ToList() }).ToList(),JsonRequestBehavior.AllowGet);
         }
     }
 }

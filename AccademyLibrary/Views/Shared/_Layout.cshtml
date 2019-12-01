@@ -2,34 +2,31 @@
 
 
 <html lang="es">
-<html lang="en">
 <head>
+    <link rel="icon" href="~/Resources/icon.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="~/Content/styles.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet">
-    <title>Document</title>
+    <title>Accademy Library</title>
 </head>
 <body>
     <header>
         <div>
-            <h1>Accademy Library</h1>
-            <div id="search-type">
-                <i class="material-icons">search</i>
-                <input id="topSearch" type="text" placeholder="Buscar..." name="" id="">
-            </div>
+            <h1><p id="titulo">Accademy Library</p></h1>
+            
             <div>
-                <nav class="navList">
-                    <a id="libro" class="item">Libro</a>
-                    <a id="editorial" class="item">Editorial</a>
-                    <a id="genero" class="item">Género</a>
-                    <a id="autor" class="item">Autor</a>
-                </nav>
+                <ul class="navList">
+                    <li id="libro"class="item selected"><a  >Libro</a></li>
+                    <li id="editorial"class="item"><a  >Editorial</a></li>
+                    <li id="genero"class="item"><a  >Género</a></li>                    
+                    <li id="autor"class="item"><a  >Autor</a></li>
+                </ul>
 
             </div>
-            <button class="" id="navBar">navBar</button>
+            <a class="material-icons" id="navHamb">menu</a>
 
         </div>
     </header>
@@ -37,14 +34,25 @@
     <main>
         <div>
             <div id="subNav">
-                <h2 id="sectionTitle">Libros</h2> <br />
-                <i class="material-icons">filter</i>
-                
+                <h2 id="tituloSec">Titulo</h2>
+                <div id="search-type">
+                    <i class="material-icons">add</i>
+                    <input id="topSearch" type="text" placeholder="Buscar..." name="">
+                    <i class="material-icons">filter_list</i>
+                </div>
+
             </div>
             <section id="cardsContainer">
                 <div class="card">
-                    <br />
-                    <h2>Cargando  . . .</h2>
+                    <div class="card-top">
+                        <h2>Cargando  . . .</h2>
+                    </div>
+                    <div class="card-main">
+
+                    </div>
+                    <div class="card-footer">
+
+                    </div>
                 </div>
             </section>
         </div>

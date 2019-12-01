@@ -221,10 +221,10 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Author\show.cshtml" />
     <Content Include="Views\Author\addAuthor.cshtml" />
-    <Content Include="Views\wara.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Resources\" />
     <Folder Include="Views\Book\" />
     <Folder Include="Views\Editorial\" />
     <Folder Include="Views\Genre\" />

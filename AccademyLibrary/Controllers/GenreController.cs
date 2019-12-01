@@ -23,7 +23,7 @@ namespace AccademyLibrary.Controllers
         [HttpGet]
         public JsonResult getGenres()
         {
-            return Json(db.Genre.Select(g => new { Name = g.Name, Description = g.Description }).ToList(), JsonRequestBehavior.AllowGet);
+            return Json(db.Genre.Select(g => new { Id = g.Id, Name = g.Name, Description = g.Description }).ToList(), JsonRequestBehavior.AllowGet);
         }
     }
 }

@@ -58,7 +58,7 @@ namespace AccademyLibrary.Controllers
         [HttpGet]
         public JsonResult getAuthors()
         {
-            return Json(db.Author.Select(a => new { Name = a.Name, Nationality = a.Nationality}).ToList(), JsonRequestBehavior.AllowGet);
+            return Json(db.Author.Select(a => new { Id = a.Id, Name = a.Name, Nationality = a.Nationality}).ToList(), JsonRequestBehavior.AllowGet);
         }
     }
 }
