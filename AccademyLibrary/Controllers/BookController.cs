@@ -18,10 +18,36 @@ namespace AccademyLibrary.Controllers
         {
             return View();
         }
-        [HttpGet]
-        public JsonResult getBooks()
+
+        [HttpPost]
+        public ActionResult AddBook(Book book, IEnumerable<int> genres, int publiher) 
         {
-            return Json(db.Book.Select(b=> new { Id = b.Id, Title = b.Title, Subtitle = b.Subtitle, ISBN=b.ISBN, Pub = b.Author.ToList() }).ToList(),JsonRequestBehavior.AllowGet);
+            if (this.ModelState.IsValid)
+            {
+                foreach (var ind  in genres)
+                {
+                    book.Genre.Add(db.Genre.Find(ind));
+                }
+                book.PubId = publiher;
+                db.Book.Add(book);
+                db.SaveChanges();
+                return View();
+            }
+            return Content("Algo salio mal!");
+        }
+
+        [HttpGet]
+        public JsonResult getBooks() {               
+            return Json(db.Book.Select(b=> new
+            {
+                Pub = b.Publisher.Name,
+                Authors = b.Author.Select(a=>a.Name),
+                Genres = b.Genre.Select(g=>g.Name),
+                Id = b.Id, 
+                Title = b.Title, 
+                Subtitle = b.Subtitle, 
+                ISBN = b.ISBN
+            }).ToList(),JsonRequestBehavior.AllowGet);
         }
     }
 }

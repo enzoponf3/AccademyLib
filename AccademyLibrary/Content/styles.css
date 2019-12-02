@@ -46,11 +46,11 @@ main {
     display: flex;
     flex-wrap: wrap;
     height: 100%;
-    padding: 3rem 2rem 2rem 2rem;
+    padding: 3rem 1.5rem 2rem 1.5rem;
 }
 
 main>div{
-    width:90vw;
+    width:100%;
 }
 
 section {
@@ -82,12 +82,20 @@ button {
     display: none;
 }
 
+
 .sideBar {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
     box-shadow: 2px 0 8px rgba(0, 0, 0, 0.3);
+    background-color:var(--primary-color);
+    position:fixed;
+    height:84vh;
+    width:70vw;
+    z-index:15;
+    top:50px;
+    right:0;
 }
 
 .navList {
@@ -134,7 +142,7 @@ input {
     background-color: rgba(255,255,255,.8);
 }
 #cardsContainer{
-    width:94vw;
+    
     padding:2rem 0 0 0 ;
 }
 .card {
@@ -179,6 +187,81 @@ input {
     border-radius:3px;
 }
 
+.modal{
+    position:absolute;
+    top:0;
+    left:0;
+    height:100%;
+    width:100%;
+    background-color:rgba(0,0,0,.3);
+    z-index:100;
+    opacity:0;
+    visibility:hidden;
+}
+
+.modalBox {
+    position: fixed;
+    top: 30%;
+    left: 40%;
+    background-color: whitesmoke;
+    padding: 1rem 1.5rem;
+    width: 20%;
+    border-radius: 0.5rem;
+    
+    transform: scale(1.1); /*sabe.io*/
+    transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s; /*sabe.io*/
+}
+#modalHead{
+    padding: 0 0 1rem 0;
+}
+
+#modalBody > span {
+    font-weight:300;
+}
+
+#modalBody > span > p{
+    margin-left:4rem;
+}
+
+#modalFoot{
+    position:relative;
+    margin-top:1rem;
+    left:40px;
+}
+
+#modalFoot > div > a, .modalBtn {
+    color:var(--primary-color);
+    background-color: whitesmoke;
+
+}
+
+#modalFoot > div > a:hover, .modalBtn:hover{
+    cursor:pointer;
+    background-color:lightgray;
+}
+
+#cerrarModal {
+    position: relative;
+    top: -.5rem;
+    right: -.5rem;
+    float: right;
+    border-radius:3px;
+    padding:.1rem .5rem;
+    background-color:lightgray;
+    text-align:center;
+}
+.showModal {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1.0);
+    transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+}
+#cerrarModal:hover{
+    background-color:gray;
+    cursor:pointer;
+}
+
+
 body > footer {
     display: flex;
     position: fixed;
@@ -190,7 +273,7 @@ body > footer {
     align-items: center;
     text-align: center;
     width: 100%;
-    padding: 1rem 1rem;
+    padding: .5rem 1rem;
     z-index: 20;
     box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.3);
 }
@@ -211,12 +294,15 @@ li:active, .cardButton:active {
 
 @media only screen and (max-width: 768px) {
 
-    body > h1{
-        line-height: 1px;
+    body > header > div{
+        height:40px;
     }
-    #titulo{
-
-        font-size:21px;
+    h1{
+        font-size:25px;
+    }
+    .modalBox{
+        left:10%;
+        width:80%;
     }
     .item {
         font-size:12px;
@@ -229,25 +315,38 @@ li:active, .cardButton:active {
         margin: 0 0 0 1rem;
         background-color: rgba(255,255,255,.8);
     }
+    body>footer{
+        position:relative;
+        bottom:0;
+    }
+}
+
+#sideNav{
+    display:flex;
+    flex-direction:row;
 }
 
 @media only screen and (max-width: 600px) {
-    body > h1 {
-        line-height: 1px;
+  
+    h1 {
+        font-size: 25px;
     }
-
-    #titulo {
-        font-size: 21px;
-    }
-
-    .item {
+    .navList{
         display:none;
-        
     }
     #navHamb {
         display: inline;
-        background-color: rgba(255,255,255,.5);
+        color: rgba(255,255,255,1);
         text-decoration:none;
-        color:black;
+        background-color:rgba(0,0,0,.3);
+        border-radius:3px;
+        cursor:pointer;
+        right:0;
+    }
+    #agregarIcon, #filtarIcon {
+        position: fixed;
+    }
+    body > footer {
+        display:none;
     }
 }

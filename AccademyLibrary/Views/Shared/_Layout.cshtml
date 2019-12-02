@@ -15,11 +15,11 @@
 <body>
     <header>
         <div>
-            <h1><p id="titulo">Accademy Library</p></h1>
+            <h1 id="titulo">Accademy Library</h1>
             
             <div>
-                <ul class="navList">
-                    <li id="libro"class="item selected"><a  >Libro</a></li>
+                <ul id="navCont"class="navList">
+                    <li id="libro"class="item"><a  >Libro</a></li>
                     <li id="editorial"class="item"><a  >Editorial</a></li>
                     <li id="genero"class="item"><a  >Género</a></li>                    
                     <li id="autor"class="item"><a  >Autor</a></li>
@@ -32,13 +32,27 @@
     </header>
 
     <main>
+        <div class="modal">
+            <div class="modalBox">
+                <a id="cerrarModal">x</a>
+                <div id="modalHead">
+                </div>
+                <div id="modalBody">
+                    
+                </div>
+                <div id="modalFoot">
+
+                </div>
+
+            </div>
+        </div>
         <div>
             <div id="subNav">
                 <h2 id="tituloSec">Titulo</h2>
                 <div id="search-type">
-                    <i class="material-icons">add</i>
+                    <i id="agregarIcon"class="material-icons">add</i>
                     <input id="topSearch" type="text" placeholder="Buscar..." name="">
-                    <i class="material-icons">filter_list</i>
+                    <i id="filtarIcon"class="material-icons">filter_list</i>
                 </div>
 
             </div>
