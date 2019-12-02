@@ -92,12 +92,24 @@ values
 ('Harry Potter','And the Philosopher''''s Stone','8745091276435',(select Id from Publisher where Publisher.[Name] = 'Bloomsbury Publishing'
 ))
 
+insert into Book_Auth
+(BookId, AuthId)
+select 
+	(select Id from Book where Book.Id = 1),
+	(select Id from Author where Author.Id = 1)
 
+insert into Book_Gen
+(BookId, GenId)
+select 
+	(select Id from Book where Book.Id = 1),
+	(select Id from Genre where Genre.Id = 1)
 
 select * from Genre;
 select * from Author;
 select * from Publisher;
 select * from Book
+select *from Book_Auth;
+select * from Book_Gen;
 
 
 

@@ -30,13 +30,19 @@ namespace AccademyLibrary.Controllers
             return View(au);
         }
         [HttpPost]
-        public ActionResult addAuthor(Author author)
+        public ActionResult Add(string name, string nationality)
         {
-            db.Author.Add(author);
-            db.Entry(author).State = System.Data.Entity.EntityState.Added;
-            db.SaveChanges();
-            return RedirectToAction("show"); 
+            if (name.Length > 0 && nationality.Length == 3)
+            {
+                Author author = new Author();
+                author.Name = name;
+                author.Nationality = nationality;
+                db.Author.Add(author);
+                db.SaveChanges();
+                return Content("Author added");
 
+            }
+            return new HttpStatusCodeResult(505, "El valor de las cadenas es invalido!");
         }
 
         public ActionResult Edit(int id)
@@ -59,6 +65,16 @@ namespace AccademyLibrary.Controllers
         public JsonResult getAuthors()
         {
             return Json(db.Author.Select(a => new { Id = a.Id, Name = a.Name, Nationality = a.Nationality}).ToList(), JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult Delete(int Author)
+        {
+            Author au = db.Author.Find(Author);
+            db.Author.Remove(au);
+            db.SaveChanges();
+            return Content("Author deleted");
+
         }
     }
 }

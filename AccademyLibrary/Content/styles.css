@@ -87,7 +87,6 @@ button {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
     box-shadow: 2px 0 8px rgba(0, 0, 0, 0.3);
     background-color:var(--primary-color);
     position:fixed;
@@ -146,6 +145,7 @@ input {
     padding:2rem 0 0 0 ;
 }
 .card {
+    position:relative;
     overflow: hidden;
     width: 200px;
     height: 250px;
@@ -155,6 +155,7 @@ input {
     margin: 8px;
     transition: all 0.3s ease;
     background-color:whitesmoke;
+    z-index:0;
 }
 
 .cardImg{
@@ -179,12 +180,14 @@ input {
     position:relative;
     display:inline-block;
     color:whitesmoke;
+    cursor:pointer;
     flex-direction:row-reverse;
     background-color:var(--primary-color);
     text-decoration:none;
     margin-left:.5rem;
     padding: 6px 15px;
     border-radius:3px;
+    z-index:200;
 }
 
 .modal{
@@ -202,10 +205,10 @@ input {
 .modalBox {
     position: fixed;
     top: 30%;
-    left: 40%;
+    left: 30%;
     background-color: whitesmoke;
     padding: 1rem 1.5rem;
-    width: 20%;
+    width: 40%;
     border-radius: 0.5rem;
     
     transform: scale(1.1); /*sabe.io*/
@@ -236,8 +239,10 @@ input {
 }
 
 #modalFoot > div > a:hover, .modalBtn:hover{
+    
     cursor:pointer;
     background-color:lightgray;
+    
 }
 
 #cerrarModal {

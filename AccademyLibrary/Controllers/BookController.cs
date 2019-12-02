@@ -20,20 +20,28 @@ namespace AccademyLibrary.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddBook(Book book, IEnumerable<int> genres, int publiher) 
+        public ActionResult Add(string bookTitle, string bookSub, string ISBN, IEnumerable<int> authors, IEnumerable<int> genres, int publisher) 
         {
-            if (this.ModelState.IsValid)
-            {
+            if (bookTitle.Length > 0 && ISBN.Length != 13)
+            {            
+                var book = new Book();
+                book.Title = bookTitle;
+                book.Subtitle = bookSub;
+                book.ISBN = ISBN;
                 foreach (var ind  in genres)
                 {
                     book.Genre.Add(db.Genre.Find(ind));
                 }
-                book.PubId = publiher;
+                foreach(var ind in authors)
+                {
+                    book.Author.Add(db.Author.Find(ind));
+                }
+                book.Publisher = db.Publisher.Find(publisher);
                 db.Book.Add(book);
                 db.SaveChanges();
-                return View();
+                return Content("Book added");
             }
-            return Content("Algo salio mal!");
+            return new HttpStatusCodeResult(505, "Algo salio mal!");
         }
 
         [HttpGet]
@@ -48,6 +56,15 @@ namespace AccademyLibrary.Controllers
                 Subtitle = b.Subtitle, 
                 ISBN = b.ISBN
             }).ToList(),JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult Delete (int Book)
+        {
+            Book book = db.Book.Find(Book);
+            db.Book.Remove(book);
+            db.SaveChanges();
+            return Content("Book deleted!");
         }
     }
 }
