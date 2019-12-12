@@ -62,7 +62,7 @@ namespace AccademyLibrary.Controllers
             return RedirectToAction("show");
         }
         [HttpGet]
-        public JsonResult getAuthors()
+        public JsonResult Get()
         {
             return Json(db.Author.Select(a => new { Id = a.Id, Name = a.Name, Nationality = a.Nationality}).ToList(), JsonRequestBehavior.AllowGet);
         }

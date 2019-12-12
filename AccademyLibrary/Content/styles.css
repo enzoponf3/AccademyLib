@@ -209,8 +209,7 @@ input {
     background-color: whitesmoke;
     padding: 1rem 1.5rem;
     width: 40%;
-    border-radius: 0.5rem;
-    
+    border-radius: 0.5rem;    
     transform: scale(1.1); /*sabe.io*/
     transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s; /*sabe.io*/
 }

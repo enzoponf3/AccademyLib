@@ -6,114 +6,98 @@ let autores = []
 let generos = []
 let editoriales = []
 
-
-function getBooks() {
-    let xhr = new XMLHttpRequest()
-    xhr.open("get", "/Book/getBooks")
-    xhr.addEventListener("readystatechange",()=> {
-        if ((xhr.readyState == 4) && (xhr.status == 200)) {
-            let objs = JSON.parse(xhr.response)
-            objs.forEach(obj => {
-                if (!(libros.find(l =>  l.Id === obj.Id ))) {
-                        libros.push(obj)
-                }
-            })
-            showAr(libros, 0)
-            return xhr.status
-        }
-    })
-    xhr.send()
-}
-
-function getEditorles() {
-    let xhr = new XMLHttpRequest()
-    xhr.open("get", "/Publisher/getPublishers")
-    xhr.addEventListener("readystatechange", () => {
-        if ((xhr.readyState == 4) && (xhr.status == 200)) {
-            let objs = JSON.parse(xhr.response)
-            objs.forEach(obj => {
-                if (!(editoriales.find(l => l.Id === obj.Id))) {
-                    editoriales.push(obj)
-                }
-            })
-            return xhr.status
-        }
-    })
-    xhr.send()
-}
-
-function getGeneros() {
-    let xhr = new XMLHttpRequest()
-    xhr.open("get", "/Genre/getGenres")
-    xhr.addEventListener("readystatechange", () => {
-        if ((xhr.readyState == 4) && (xhr.status == 200)) {
-            let objs = JSON.parse(xhr.response)
-            objs.forEach(obj => {
-                if (!(generos.find(l => l.Id === obj.Id))) {                    
-                    generos.push(obj)
-                }
-            })
-            return xhr.status
-        }
-    })
-    xhr.send()
-}
-
-function getAutores() {
-    let xhr = new XMLHttpRequest()
-    xhr.open("get", "/Author/getAuthors")
-    xhr.addEventListener("readystatechange", () => {
-        if ((xhr.readyState == 4) && (xhr.status == 200)) {
-            let objs = JSON.parse(xhr.response)
-            objs.forEach(obj => {
-                if (!(autores.find(l => l.Id === obj.Id))) {
-                    autores.push(obj)
-                }                    
-            })
-            return xhr.status
-        }
-    })
-    xhr.send()
-}
-
 titulo.addEventListener("click", () => {
-    showAr(libros,0)
+    showSelected(libros,"Book")
 })
 
 document.addEventListener('DOMContentLoaded', () => {
-    getBooks()    
-    getEditorles()        
-    getGeneros()            
-    getAutores()
+    showSelected(libros,"Book")
 })
 
 let librosBtn = document.getElementById("libro")
 librosBtn.addEventListener("click", () => {
-    getBooks()
-    setTimeout(showAr(libros,0), 300)
-    
+    showSelected(libros,"Book")
 })
 
 let editorialesBtn = document.getElementById("editorial")
 editorialesBtn.addEventListener("click", () => {
-    getEditorles()
-    setTimeout(showAr(editoriales, 1), 300)
-
+    showSelected(editoriales, "Publisher")
 })
 
 let generoBtn = document.getElementById("genero")
 generoBtn.addEventListener("click", () => {
-    getGeneros()
-    setTimeout(showAr(generos,2), 300)
+    showSelected(generos, "Genre")
 })
 
 let autoresBtn = document.getElementById("autor")
 autoresBtn.addEventListener("click", () => {
-    getAutores()
-    setTimeout(showAr(autores, 3),300)
-
+    showSelected(autores,"Author")
 })
 
+async function showSelected(arr, selected) {
+    await getElements(arr, selected)
+}
+
+function getElements(arr, selected) {
+    fetch(`/${selected}/Get`)
+        .then(r => r.json())
+        .then(d => d.forEach(obj => {
+            if (!(arr.find(l => l.Id === obj.Id))) {
+                arr.push(obj)
+            }
+        }))
+        .then(() => showElements(arr, selected))
+        .catch(e => alert(e))
+}
+
+function showElements(arr, selected) {
+    const frag = document.createDocumentFragment()
+    
+    arr.forEach(obj => {
+        const elementCard = new crearCarta()
+        const cardBtns = new crearBotones()
+        if (selected === "Book") {
+            btnsActions(libros, obj.Title, cardBtns)
+            fillCard(elementCard, selected, obj.Title, obj.Subtitle, cardBtns)
+            console.log(elementCard)
+            modalLibro(elementCard.childNodes[0], obj.Id)
+        }
+        if (selected === "Author") {
+            btnsActions(autores, obj.Name, cardBtns)
+            fillCard(elementCard, selected, obj.Name, obj.Nationality, cardBtns)
+        }
+        if (selected === "Publisher") {
+            btnsActions(editoriales, obj.Name, cardBtns)
+            fillCard(elementCard, selected, obj.Name, "", cardBtns)
+        }
+        if (selected === "Genre") {
+            btnsActions(generos, obj.Name, cardBtns)
+            fillCard(elementCard, selected, obj.Name, "", cardBtns)
+        }
+        frag.appendChild(elementCard)
+    })
+    cardsContainer.innerHTML = ""
+    cardsContainer.appendChild(frag)
+}
+
+function fillCard(card, url, text, subText, btns) {
+    const cardParts = card.childNodes
+    console.log(cardParts)
+    cardParts[0].innerHTML = `<img src="/Resources/${url}.png" class="cardImg">`
+    cardParts[1].innerHTML = `<h2>${text}</h2><span>${subText}</span>`
+    cardParts[2].appendChild(btns)
+}
+
+function btnsActions(arr, label, btns) {
+    btns.childNodes[0].addEventListener("click", () => {
+        
+    })
+    btns.childNodes[1].addEventListener("click", () => {
+
+    })
+}
+
+    /*
 function showAr(arr, reqCode) {
     console.log(arr)
     cardsContainer.innerHTML =""
@@ -198,7 +182,7 @@ function botonesCarta(id,arr,cont,code) {
     div.appendChild(editarBtn)
     div.appendChild(borrarBtn)
     return div
-}
+}*/
 
 function borrarElemento(id, arr, cont, code) {    
     borrarBase(id, cont, arr, code)
@@ -253,9 +237,7 @@ function modalLibro(div,id) {
         h3.innerHTML = libro.Title
         subTitulo.innerHTML = libro.Subtitle + `<br> Editorial: <br><p>${libro.Pub}</p> <br>`
         autores.innerHTML = "Autor/es: "
-        console.log(libro.Authors)
         libro.Authors.forEach(autor => {
-            console.log(autor)
             let autorp = document.createElement("p")
             autorp.innerHTML= autor
             autores.appendChild(autorp)
@@ -264,17 +246,20 @@ function modalLibro(div,id) {
         modalB.appendChild(subTitulo)
         modalB.appendChild(autores)
         modalF.appendChild(botonesCarta(id, libros))
-        modal.classList.toggle("showModal")
+        showModal()
     })
     
 }
 
+function showModal() {
+    modal.classList.toggle("showModal")
+}
 
 function cerrarModal() {
-    modal.classList.toggle("showModal")
     modalH.innerHTML = ""
     modalB.innerHTML = ""
     modalF.innerHTML = ""
+    modal.classList.toggle("showModal")
 }
 
 function windowOnClick(event) {

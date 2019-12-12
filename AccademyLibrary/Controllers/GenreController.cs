@@ -21,7 +21,7 @@ namespace AccademyLibrary.Controllers
         }
 
         [HttpGet]
-        public JsonResult getGenres()
+        public JsonResult Get()
         {
             return Json(db.Genre.Select(g => new { Id = g.Id, Name = g.Name, Description = g.Description }).ToList(), JsonRequestBehavior.AllowGet);
         }

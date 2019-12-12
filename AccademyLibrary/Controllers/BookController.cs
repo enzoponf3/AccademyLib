@@ -45,7 +45,7 @@ namespace AccademyLibrary.Controllers
         }
 
         [HttpGet]
-        public JsonResult getBooks() {               
+        public JsonResult Get() {               
             return Json(db.Book.Select(b=> new
             {
                 Pub = b.Publisher.Name,
